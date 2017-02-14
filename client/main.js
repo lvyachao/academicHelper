@@ -21,13 +21,15 @@ Meteor.startup(() => {
     },
     methods:{
       submitPdf: function(e) {
-      e.preventDefault();
-      this.test();
-      // this.getText(self.inputUrl).then(function (text) {
-      //     alert('parse ' + text);
-      //   }, function (reason) {
-      //     console.error(reason);
-      //   });
+        e.preventDefault();
+        Meteor.call('test', self.inputUrl, function(err,response) {
+        if(err) {
+          console.log("error");
+          return;
+        }
+        console.log("sent");
+        console.log(response);
+        });
       },
       test: function(){
         console.log("sad");
